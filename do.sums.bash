@@ -12,7 +12,7 @@ TIME="$(date +%s)"
 ([[ ! -z "${MTIME##*[!0-9]*}" ]] && (if [[ $(($TIME - $MTIME)) -gt 43200 ]] ; then git pull ; fi) || git pull) || (printf "%s\\n" "Signal generated at [ ! -z \${num##*[!0-9]*} ]" && git pull)
 rm -f *.sum
 # query .gitmodules file and find paths to submodules
-GMODSLST="$(grep path .gitmodules | sed 's/path = //g')"
+[[ -f .gitmodules ]] && GMODSLST="$(grep path .gitmodules | sed 's/path = //g')" || GMODSLST=""
 GIMODS=""
 SMDRE=""
 # build directory exclusion string
