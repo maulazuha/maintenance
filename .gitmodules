@@ -1,0 +1,3 @@
+[submodule ".scripts/mainenance"]
+	path = .scripts/mainenance
+	url = https://github.com/shlibs/maintenance
