@@ -45,5 +45,6 @@ SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.Build
 git push || git push --set-upstream origin master
 ls
 printf "%s\\n" "$PWD"
+git show
 printf "%s\\n" "Creating checksum file and pushing commit : DONE"
 # do.sums.bash EOF
