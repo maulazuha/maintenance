@@ -6,7 +6,7 @@
 # To check the files use; sha512sum -c sha512.sum
 #####################################################################
 set -euo pipefail
-printf "%s\\n" "Creating checksum file and pushing commit : "
+printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : "
 MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')" || MTIME=""
 TIME="$(date +%s)"
 ([[ ! -z "${MTIME##*[!0-9]*}" ]] && (if [[ $(($TIME - $MTIME)) -gt 43200 ]] ; then git pull --ff-only ; fi) || git pull --ff-only) || (printf "%s\\n" "Signal generated at [ ! -z \${num##*[!0-9]*} ]" && git pull --ff-only)
@@ -46,5 +46,5 @@ git push || git push --set-upstream origin master
 ls
 printf "%s\\n" "$PWD"
 git show ||:
-printf "%s\\n" "Creating checksum file and pushing commit : DONE"
+printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
 # do.sums.bash EOF
