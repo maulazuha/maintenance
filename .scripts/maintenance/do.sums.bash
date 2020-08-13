@@ -7,6 +7,9 @@
 #####################################################################
 set -euo pipefail
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : "
+_GITPUSH_() {
+	git push || git push --set-upstream origin master || printf "%s\\n" "Cannot push commit from directory ${PWD##*/} : CONTINUING : "
+}
 MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')" || MTIME=""
 TIME="$(date +%s)"
 ([[ ! -z "${MTIME##*[!0-9]*}" ]] && (if [[ $(($TIME - $MTIME)) -gt 43200 ]] ; then git pull --ff-only ; fi) || git pull --ff-only) || (printf "%s\\n" "Signal generated at [ ! -z \${num##*[!0-9]*} ]" && git pull --ff-only)
@@ -41,8 +44,7 @@ do
 done
 git add . || printf "%s\\n" "Cannot git add in directory ${PWD##*/} : CONTINUING : "
 SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
-( [[ -z "${1:-}" ]] && git commit -m "$SN" ) || ( [[ "${1//-}" == [Ss]* ]] && git commit -a -S -m "$SN" && pkill gpg-agent ) || git commit -m "$SN" || printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
-git push || git push --set-upstream origin master || printf "%s\\n" "Cannot push commit from directory ${PWD##*/} : CONTINUING : "
+( [[ -z "${1:-}" ]] && git commit -m "$SN" && _GITPUSH_) || ( [[ "${1//-}" == [Ss]* ]] && git commit -a -S -m "$SN" && pkill gpg-agent && _GITPUSH_) || (git commit -m "$SN" && _GITPUSH_) || printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
 ls
 printf "%s\\n" "$PWD"
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
