@@ -7,7 +7,7 @@
 #####################################################################
 set -euo pipefail
 printf "%s\\n" "Creating checksum file and pushing commit : "
-MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')"
+MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')" || MTIME=""
 TIME="$(date +%s)"
 ([[ ! -z "${MTIME##*[!0-9]*}" ]] && (if [[ $(($TIME - $MTIME)) -gt 43200 ]] ; then git pull ; fi) || git pull) || (printf "%s\\n" "Signal generated at [ ! -z \${num##*[!0-9]*} ]" && git pull)
 rm -f *.sum
