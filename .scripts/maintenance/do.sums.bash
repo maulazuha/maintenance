@@ -42,7 +42,7 @@ done
 git add .
 SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 ( [[ -z "${1:-}" ]] && git commit -m "$SN" ) || ( [[ "${1//-}" == [Ss]* ]] && git commit -a -S -m "$SN" && pkill gpg-agent ) || git commit -m "$SN"
-git push || git push --set-upstream origin master
+git push || git push --set-upstream origin master || printf "%s\\n" "Cannot push commit from directory ${PWD##*/} : CONTINUING : "
 ls
 printf "%s\\n" "$PWD"
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
