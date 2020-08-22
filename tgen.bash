@@ -38,7 +38,8 @@ trap _STGNTRPQUIT_ QUIT
 .scripts/maintenance/vgen.sh
 sed -i "s/^VERSIONID=.*/VERSIONID=$(head -n 1 .conf/VERSIONID )/g" setupTermuxArch.bash
 sed -i "s/^FLHDR1\[5\]=.*/FLHDR1\[5\]=\"VERSIONID=$(head -n 1 .conf/VERSIONID)\"/g" printoutstatements.bash
-cp setupTermuxArch.bash setupTermuxArch.sh
+cp setupTermuxArch setupTermuxArch.bash
+cp setupTermuxArch setupTermuxArch.sh
 cp archlinuxconfig.bash gen/
 cp espritfunctions.bash gen/
 cp getimagefunctions.bash gen/
