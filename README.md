@@ -13,9 +13,7 @@ If your forked repository is behind and ahead at the same time:
 > This branch is 1 commit ahead, 16 commits behind TermuxArch:master.
 
 A fairly simple way to update a forked is to run this command:
-```
 [`up.sh`](https://github.com/shlibs/maintenance/blob/master/upr.sh) # helps to update forks
-```
 
 Maintenance easily creates git commits and updates forked repositories https://shlibs.github.io/maintenance
 <!--maintenance README.md OEF-->
