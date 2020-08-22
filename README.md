@@ -2,10 +2,10 @@
 
 # maintenance
 
-Repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be installed as a module in `.scripts/maintenance/` in sny git repository.  It assists with `git` tasks such as:
+Repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be installed as a module in `.scripts/maintenance/` in any git repository.  It assists with `git` tasks such as:
 1) **The file [`up.sh`](https://github.com/shlibs/maintenance/blob/master/upr.sh) helps update forks easily,**
 2) **The file [`do.sums.bash`](https://github.com/shlibs/maintenance/blob/master/do.sums.bash) assists in creating commits easily,**
-3) There are, and can be more.  Do you know the source code?
+3) There are, and can be more...
 
 This repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be added as a submodule with the command `git submodule add https://github.com/shlibs/maintenance \.scripts/maintenance` (the backslash is important) to git repositories that do not have this module installed.
 
