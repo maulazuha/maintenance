@@ -3,6 +3,10 @@
 # https://sdrausty.github.io hosted courtesy https://pages.github.com
 #####################################################################
 set -eu
+
+[ -f .git/config ] && SIAD="$(grep url .git/config|cut -d"=" -f 2|head -n 1|cut -d"/" -f 2-3)"
+echo $SIAD
+exit
 git remote add upstream https://github.com/WAE/covid19 ||:
 git pull upstream https://github.com/WAE/covid19 ||:
 git checkout master
