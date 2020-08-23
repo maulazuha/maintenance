@@ -7,7 +7,16 @@
 #####################################################################
 set -euo pipefail
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : "
+_GITCOMMIT_() {
+	git commit -m
+}
+
+_GITCOMMITS_() {
+	git commit -a -S -m "$SN" && pkill gpg-agent
+}
+
 _GITPUSH_() {
+	pwd
 	git push || git push --set-upstream origin master || printf "%s\\n" "Cannot push commit from directory ${PWD##*/} : CONTINUING : "
 }
 MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')" || MTIME=""
@@ -43,8 +52,8 @@ do
 	$SCHECK -c ${SCHECK::-3}.sum
 done
 git add . || printf "%s\\n" "Cannot git add in directory ${PWD##*/} : CONTINUING : "
-SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
-( [[ -z "${1:-}" ]] && git commit -m "$SN" && _GITPUSH_) || ( [[ "${1//-}" == [Ss]* ]] && git commit -a -S -m "$SN" && pkill gpg-agent && _GITPUSH_) || (git commit -m "$SN" && _GITPUSH_) || printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
+SN="$(sn.sh)" # sn.sh is found at https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
+([[ -z "${1:-}" ]]&&_GITCOMMIT_ "$SN"&&_GITPUSH_)||([[ "${1//-}" == [Ss]* ]]&&_GITCOMMITS_&&_GITPUSH_)||(_GITCOMMITS_&&_GITPUSH_)||printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
 ls
 printf "%s\\n" "$PWD"
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
