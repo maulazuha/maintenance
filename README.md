@@ -8,7 +8,7 @@ Repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be 
 
 2) **The file [`do.sums.bash`](https://github.com/shlibs/maintenance/blob/master/do.sums.bash) assists in creating commits easily,**
 
-3) There are, and can be more...
+3) There are, and can be more shortcut commands...
 
 This repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be added as a submodule with the command `git submodule add https://github.com/shlibs/maintenance \.scripts/maintenance` (the backslash is important) to git repositories that do not have this module installed.
 
