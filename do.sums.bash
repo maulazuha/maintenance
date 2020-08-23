@@ -55,6 +55,7 @@ git add . || printf "%s\\n" "Cannot git add in directory ${PWD##*/} : CONTINUING
 SN="$(sn.sh)" # sn.sh is found at https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 ([[ -z "${1:-}" ]]&&_GITCOMMIT_&&_GITPUSH_)||([[ "${1//-}" == [Ss]* ]]&&_GITCOMMITS_&&_GITPUSH_)||(_GITCOMMIT_&&_GITPUSH_)||printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : Continuing..."
 ls
+[ -f .conf/VERSIONID ]&&cat .conf/VERSIONID
 printf "%s\\n" "$PWD"
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
 # do.sums.bash EOF
