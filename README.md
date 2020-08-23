@@ -1,6 +1,6 @@
-## [Maintenance](https://shlibs.github.io/maintenance/) 
+## [maintenance](https://shlibs.github.io/maintenance/) 
 
-# maintenance
+# [maintenance](https://github.com/shlibs/maintenance/blob/master/README.md)
 
 Repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be installed as a module in `.scripts/maintenance/` in any git repository.  It assists with `git` tasks like:
 
