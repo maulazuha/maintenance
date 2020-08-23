@@ -4,7 +4,7 @@
 
 Repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) can be installed as a module in `.scripts/maintenance/` in any git repository.  It assists with `git` tasks such as:
 
-1) ~~**The file [`up.sh`](https://github.com/shlibs/maintenance/blob/master/upr.sh) helps update forks easily,**~~  partially implemented
+1) ~~**The file [`up.sh`](https://github.com/shlibs/maintenance/blob/master/upr.sh) helps update forks easily**~~  partially implemented,
 
 2) **The file [`do.sums.bash`](https://github.com/shlibs/maintenance/blob/master/do.sums.bash) assists in creating commits easily,**
 
