@@ -53,7 +53,7 @@ do
 done
 git add . || printf "%s\\n" "Cannot git add in directory ${PWD##*/} : CONTINUING : "
 SN="$(sn.sh)" # sn.sh is found at https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
-( [[ -z "${1:-}" ]] && _GITCOMMIT_ && _GITPUSH_ ) || ([[ "${1//-}" == [Ss]* ]] && _GITCOMMITS _&&_ GITPUSH_) || (_GITCOMMIT_ && _GITPUSH_) || printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
+([[ -z "${1:-}" ]]&&_GITCOMMIT_&&_GITPUSH_)||([[ "${1//-}" == [Ss]* ]]&&_GITCOMMITS_&&_GITPUSH_)||(_GITCOMMIT_&&_GITPUSH_)||printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : CONTINUING : "
 ls
 printf "%s\\n" "$PWD"
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : DONE"
