@@ -18,5 +18,5 @@ This repository [`shlibs/maintenance`](https://github.com/shlibs/maintenance) ca
 ~~A fairly simple way to update a forked is to run this command:~~
 ~~[`up.sh`](https://github.com/shlibs/maintenance/blob/master/upr.sh) # helps to update forks~~
 
-Maintenance easily creates git commits and updates forked repositories https://shlibs.github.io/maintenance
+Maintenance easily creates git commits ~~and updates forked repositories~~ https://shlibs.github.io/maintenance
 <!--maintenance README.md OEF-->
