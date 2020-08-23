@@ -23,6 +23,7 @@ MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')
 TIME="$(date +%s)"
 ([[ ! -z "${MTIME##*[!0-9]*}" ]]&&([[ $(($TIME - $MTIME)) -gt 43200 ]]&&git pull --ff-only)||git pull --ff-only)||(printf "%s\\n" "Signal generated at [ ! -z \${num##*[!0-9]*} ]"&&git pull --ff-only)
 rm -f *.sum
+.scripts/maintenance/vgen.sh
 # query .gitmodules file and find paths to submodules
 [[ -f .gitmodules ]] && GMODSLST="$(grep path .gitmodules | sed 's/path = //g')" || GMODSLST=""
 GIMODS=""
