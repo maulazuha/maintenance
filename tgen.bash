@@ -34,21 +34,15 @@ trap '_STGNTRPERROR_ $LINENO $BASH_COMMAND $?' ERR
 trap _STGNTRPEXIT_ EXIT
 trap _STGNTRPSIGNAL_ HUP INT TERM
 trap _STGNTRPQUIT_ QUIT
-
 sed -i "s/^VERSIONID=.*/VERSIONID=$(head -n 1 .conf/VERSIONID )/g" setupTermuxArch
 sed -i "s/^FLHDR1\[5\]=.*/FLHDR1\[5\]=\"VERSIONID=$(head -n 1 .conf/VERSIONID)\"/g" printoutstatements.bash
 cp setupTermuxArch setupTermuxArch.bash
 cp setupTermuxArch setupTermuxArch.sh
-cp archlinuxconfig.bash gen/
-cp espritfunctions.bash gen/
-cp getimagefunctions.bash gen/
-cp knownconfigurations.bash gen/
-cp maintenanceroutines.bash gen/
-cp necessaryfunctions.bash gen/
-cp printoutstatements.bash gen/
-cp setupTermuxArch gen/
+cp *sh gen/
+cp setupTermuxArch  gen/
+cp setupTermuxArch.sh  gen/
 cd gen/
-sha512sum *.bash > termuxarchchecksum.sha512
+sha512sum *sh > termuxarchchecksum.sha512
 sha512sum  setupTermuxArch >> termuxarchchecksum.sha512
 sha512sum -c termuxarchchecksum.sha512
 tar zcf ../setupTermuxArch.tar.gz *
