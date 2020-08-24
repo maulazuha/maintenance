@@ -6,7 +6,7 @@ set -eu
 declare ONESA
 declare STIME
 _GENRAND_() {
-	[[ -r  proc/sys/kernel/random/uuid ]]&&_RANDUUID_||_RANDDATE_
+	[[ -r /proc/sys/kernel/random/uuid ]]&&_RANDUUID_||_RANDDATE_
 	printf "\\e[1;7;38;5;0m%s\\e[0m" "$STIME"
 }
 _RANDDATE_() {
