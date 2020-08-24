@@ -46,9 +46,10 @@ cp knownconfigurations.bash gen/
 cp maintenanceroutines.bash gen/
 cp necessaryfunctions.bash gen/
 cp printoutstatements.bash gen/
-cp setupTermuxArch.bash gen/
+cp setupTermuxArch gen/
 cd gen/
 sha512sum *.bash > termuxarchchecksum.sha512
+sha512sum  setupTermuxArch >> termuxarchchecksum.sha512
 sha512sum -c termuxarchchecksum.sha512
 tar zcf ../setupTermuxArch.tar.gz *
 cd ..
