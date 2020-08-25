@@ -8,16 +8,16 @@
 set -euo pipefail
 printf "%s\\n" "Creating checksum file and pushing commit from directory ${PWD##*/} : "
 _GITCOMMIT_() {
-	git commit -m "$SN"
+	git commit -m "$SN" || (printf "%s\\n" "Cannot git commit from directory ${PWD##*/} : EXITING... : " && exit)
 }
 
 _GITCOMMITS_() {
-	git commit -a -S -m "$SN" && pkill gpg-agent
+	git commit -a -S -m "$SN" && pkill gpg-agent || (printf "%s\\n" "Cannot git commit from directory ${PWD##*/} : EXITING... : " && exit)
 }
 
 _GITPUSH_() {
 	pwd
-	git push || git push --set-upstream origin master || printf "%s\\n" "Cannot push commit from directory ${PWD##*/} : CONTINUING : "
+	git push || git push --set-upstream origin master || (printf "%s\\n" "Cannot git push from directory ${PWD##*/} : EXITING... : " && exit)
 }
 MTIME="$(ls -l --time-style=+"%s" .git/ORIG_HEAD 2>/dev/null | awk '{print $6}')" || MTIME=""
 TIME="$(date +%s)"
@@ -52,7 +52,7 @@ do
 	printf "%s\\n" "Checking $SCHECK..."
 	$SCHECK -c ${SCHECK::-3}.sum
 done
-git add . || printf "%s\\n" "Cannot git add in directory ${PWD##*/} : CONTINUING : "
+git add . || (printf "%s\\n" "Cannot git add in directory ${PWD##*/} : EXITING... : " && exit)
 SN="$(sn.sh)" # sn.sh is found at https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 ([[ -z "${1:-}" ]]&&_GITCOMMIT_&&_GITPUSH_)||([[ "${1//-}" == [Ss]* ]]&&_GITCOMMITS_&&_GITPUSH_)||(_GITCOMMIT_&&_GITPUSH_)||printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : Continuing..."
 ls
