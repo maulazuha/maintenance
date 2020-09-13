@@ -55,9 +55,10 @@ done
 git add . || (printf "%s\\n" "Cannot git add in directory ${PWD##*/} : EXITING... : " && exit)
 WPWD="$PWD"
 _IFBINEXT_() {
-	[ -d "$HOME/bin" ] && cd "$HOME/bin" && curl -OL https://raw.githubusercontent.com/BuildAPKs/maintenance.BuildAPKs/master/sn.sh && chmod 700 sn.sh && cd "$WPWD"
+	[ -d "$HOME/bin" ] && cd "$HOME/bin" && curl -OL https://raw.githubusercontent.com/BuildAPKs/maintenance.BuildAPKs/master/sn.sh && chmod 700 sn.sh ; cd "$WPWD"
 }
-command -v sn.sh || printf "\\e[1;38;5;124mCommand %s not found: \\e[1;38;5;148mContinuing...\\n" && _IFBINEXT_ ; printf "\\e[0m"
+SCMD="sn.sh"
+command -v $SCMD || printf "\\e[1;38;5;124mCommand \\e[1;38;5;148m%s\\e[1;38;5;124m not found: Continuing...\\n" "'$SCMD'" && _IFBINEXT_ ; printf "\\e[0m"
 SN="$(sn.sh)" # sn.sh is found at https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 ([[ -z "${1:-}" ]]&&_GITCOMMIT_&&_GITPUSH_)||([[ "${1//-}" == [Ss]* ]]&&_GITCOMMITS_&&_GITPUSH_)||(_GITCOMMIT_&&_GITPUSH_)||printf "%s\\n" "Cannot git commit in directory ${PWD##*/} : Continuing..."
 ls
