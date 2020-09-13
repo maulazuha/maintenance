@@ -39,11 +39,14 @@ sed -i "s/^FLHDR1\[5\]=.*/FLHDR1\[5\]=\"VERSIONID=$(head -n 1 .conf/VERSIONID)\"
 cp setupTermuxArch setupTermuxArch.bash
 cp setupTermuxArch setupTermuxArch.sh
 cp *sh gen/
+cp LICENSE gen/
 cp setupTermuxArch  gen/
 cp setupTermuxArch.sh  gen/
+cp setupTermuxArch.bash  gen/
 cd gen/
 sha512sum *sh > termuxarchchecksum.sha512
-sha512sum  setupTermuxArch >> termuxarchchecksum.sha512
+sha512sum LICENSE >> termuxarchchecksum.sha512
+sha512sum setupTermuxArch >> termuxarchchecksum.sha512
 sha512sum -c termuxarchchecksum.sha512
 tar zcf ../setupTermuxArch.tar.gz *
 cd ..
